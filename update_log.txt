@@ -1,1 +1,2 @@
-SHUTDOWN#! SYSTEM PATCH !#THIS IS NOT A TEST.#PATCH BUG IN PYBASE64 ITS NOT WORKING
+UPDATE#main.py#https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODE_DOSTOOL/main/main.py
+UPDATE#other_data.py#https://github.com/Hex1629/SOCKETEXPLODE_DOSTOOL/blob/main/other_data.py

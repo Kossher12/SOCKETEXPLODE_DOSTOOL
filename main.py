@@ -1,7 +1,7 @@
 import requests
 import base64
 import cryptography
-import colored
+from colored import fg,bg,attr
 import colorama
 import discord_webhook
 from cryptography.fernet import Fernet
@@ -55,10 +55,7 @@ else:
  if leak_logs_test[0].upper() == 'SHUTDOWN':
     flash(f'{leak_logs_test[2]}',3,0.3)
     clear_console()
-    print(f'''
-{Fore.LIGHTRED_EX}┌─┐┌─┐┌─┐┬┌─┌─┐┌┬┐{Fore.LIGHTYELLOW_EX}╔═╗═╗ ╦╔═╗╦  ╔═╗╔╦╗╔═╗
-{Fore.RED}─┐│ ││  ├┴┐├┤  │ {Fore.YELLOW}║╣ ╔╩╦╝╠═╝║  ║ ║ ║║║╣ 
-{Fore.RED}└─┘└─┘└─┘┴ ┴└─┘ ┴{Fore.WHITE}o{Fore.YELLOW}╚═╝╩ ╚═╩  ╩═╝╚═╝═╩╝╚═╝{Fore.RESET}''')
+    print(f'''{fg(40)}        ╔═╗{fg(41)}═╗ ╦{fg(42)}╔═╗{fg(43)}┌┬┐{fg(44)}┌─┐{fg(45)}┌─┐{fg(80)}┬  \n{fg(40)}        ╚═╗{fg(41)}╔╩╦╝{fg(42)}╠═╝{fg(43)} │ {fg(44)}│ │{fg(45)}│ │{fg(80)}│  \n{fg(40)}        ╚═╝{fg(41)}╩ ╚═{fg(42)}╩ {fg(7)}o{fg(43)} ┴ {fg(44)}└─┘{fg(45)}└─┘{fg(80)}┴─┘{attr(0)}''')
     print_slow(f'{Fore.RED}{leak_logs_test[3 ]}\n{leak_logs_test[4]}{Fore.RESET}',0.1)
     time.sleep(0.5)
     files_build = FILES_MAKER(os.path.join(os.path.dirname(__file__),'setting.txt'),'R',0)

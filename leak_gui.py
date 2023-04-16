@@ -307,7 +307,7 @@ def PANEL_USE():
             time_booter = int(arg_load[3])
             mode_tls = str(arg_load[4])
             target = get_target(url)
-            RUNNING_RECREATEHTTPS(thread_loader,target,time_booter,mode_tls)
+            threading.Thread(target=RUNNING_RECREATEHTTPS,args=(thread_loader,target,time_booter,mode_tls)).start()
             target_load = target['host']
             port_load = target['port']
             methods_load = 'HTTPS_RECREATE'

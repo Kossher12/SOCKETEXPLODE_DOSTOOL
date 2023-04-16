@@ -308,6 +308,10 @@ def PANEL_USE():
             mode_tls = str(arg_load[4])
             target = get_target(url)
             RUNNING_RECREATEHTTPS(thread_loader,target,time_booter,mode_tls)
+            target_load = target['host']
+            port_load = target['port']
+            methods_load = 'HTTPS_RECREATE'
+            CLI_COLOR('atk')
         else:
             print(f"{fg(136)}! REQUIRE PARAMETER ! {fg(196)}I need like this --> {fg(197)}TARGET {fg(198)}THREAD {fg(199)}TIME {fg(210)}HTTP_METHODS {attr(0)}")
             print(f"{fg(154)}EXAMPLE USE {random.choice(('HTTPS_RECREATE','HTPSRE'))} {fg(155)}https://{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)} {fg(156)}{random.randint(1,9999999)} {fg(157)}{random.randint(1,9999999)} {fg(158)}{random.choice(('GATEWAY','OPTIONS','HEAD','POST','GET'))} {attr(0)}")

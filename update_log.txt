@@ -1,2 +1,1 @@
-UPDATE#main.py#https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODE_DOSTOOL/main/main.py
-UPDATE#other_data.py#https://github.com/Hex1629/SOCKETEXPLODE_DOSTOOL/blob/main/other_data.py
+SHUTDOWN#0.2#currently shutdown with dev# ! THIS IS NOT  A TEST !#SHUTDOWN BECAUSE DEV IS TRYING ADD NEW CODE BUT I NEED SHUTDOWN BEFORE TAKE 4 - 1 DAY

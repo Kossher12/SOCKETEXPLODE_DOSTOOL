@@ -5,7 +5,7 @@ from colored import fg,bg,attr
 import colorama
 import discord_webhook
 from cryptography.fernet import Fernet
-from leak_gui import checker_login,PANEL_USE
+from leak_gui import PANEL_USE
 import requests
 import random
 from other_data import *

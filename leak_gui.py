@@ -458,3 +458,28 @@ def PANEL_USE():
     else:
        print(f"{fg(196)}{console_prompt} NOT FOUND COMMAND ! {attr(0)}")
     PANEL_USE()
+def checker_login():
+    global username,password
+    clear_text()
+    print(f"{Fore.LIGHTYELLOW_EX}         __..---..__\n{Fore.YELLOW}     ,-='  {Fore.RED}/  |  \{Fore.YELLOW}  `=-.\n{Fore.LIGHTWHITE_EX}    :--..___________..--;\n{Fore.WHITE}     \.,_____________,./ \n{Fore.RED}   ╔═╗╔═╗╔═╗╦╔═╔═╗╔╦╗┌─┐┬┌─┐\n{Fore.LIGHTRED_EX}   ╚═╗║ ║║  ╠╩╗║╣  ║ ├─┘│├┤ \n{Fore.WHITE}   ╚═╝╚═╝╚═╝╩ ╩╚═╝ ╩o┴  ┴└─┘{Fore.RESET}")
+    print(f"{Fore.YELLOW}USER - ROOT {Fore.LIGHTYELLOW_EX}PASSWORD - ROOT{Fore.RESET}")
+    time.sleep(0.5)
+    username = input(f"{Fore.CYAN}USERNAME {Fore.WHITE}${Fore.RESET}")
+    time.sleep(0.5)
+    password = input(f"{Fore.BLUE}PASSWORD {Fore.WHITE}${Fore.RESET}")
+    time.sleep(0.5)
+    print(F"{Fore.BLUE}LOGIN TO PANEL {Fore.WHITE}({Fore.LIGHTBLUE_EX}TRYING LOGIN WITH {username}@{password}{Fore.WHITE}) . . .{Fore.RESET}")
+    time.sleep(int(random.randint(1,3)))
+    if login_checker(username,password) == True:
+     print(f"{Fore.CYAN}PANEL LOADING . . .{Fore.RESET}")
+     time.sleep(1)
+     clear_text()
+     command()
+    elif login_checker(username,password) == 'UNKNOWN ERROR ARE RETURNING BY FILESNOTFOUND':
+        print(f"{Fore.RED}UNKNOWN ERROR OF FILES 'login.txt'{Fore.RESET}")
+        time.sleep(1)
+        checker_login()
+    else:
+     print(f"{Fore.RED}FAILED {Fore.YELLOW}LOGIN . . .{Fore.RESET}")
+     time.sleep(1)
+     checker_login()

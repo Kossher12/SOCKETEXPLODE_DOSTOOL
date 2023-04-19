@@ -441,7 +441,8 @@ def PANEL_USE():
            print(F"[ERROR] {e}")
           except BaseException as e:
            print(F"[BASE - ERROR] {e}")
-    if len(attack_ist_id) == 0:
+    elif arg_load[0] == 'STOP':
+       if len(attack_ist_id) == 0:
           print(f"{fg(196)}NOT FOUND ID{attr(0)}")
        else:
           for data_id in attack_ist_id:
@@ -480,6 +481,7 @@ def PANEL_USE():
     else:
        print(f"{fg(196)}{console_prompt} NOT FOUND COMMAND ! {attr(0)}")
     PANEL_USE()
+
 def checker_login():
     global username,password
     clear_console()

@@ -469,4 +469,3 @@ def PANEL_USE():
     else:
        print(f"{fg(196)}{console_prompt} NOT FOUND COMMAND ! {attr(0)}")
     PANEL_USE()
-PANEL_USE()

@@ -16,6 +16,18 @@ attack_ist_id = []
 
 # * DEF & CLASS
 
+def login_checker(username,password):
+    file_path = os.path.join(os.path.dirname(__file__), 'login.txt')
+    try:
+        with open(file_path) as f:
+            credentials = [x.strip() for x in f.readlines() if x.strip()]
+            for x in credentials:
+             c_username, c_password = x.split('@')
+             if c_username.upper()  == username.upper() and c_password.upper() == password.upper():
+               return True
+    except FileNotFoundError:
+        return 'UNKNOWN ERROR ARE RETURNING BY FILESNOTFOUND'
+
 def clear_console():
     if platform.system().lower() == 'windows':
        os.system('cls')
@@ -254,15 +266,15 @@ def CLI_COLOR(mode):
        pass
     # GUI you can replace its
     if mode == 'banner':
-     print(f'''{fg(154)}╔╗╔{fg(155)}╔═╗{fg(156)}╔╗ {fg(196)}╦ ╦{fg(197)}╦{fg(198)}  ╔═╗\n{fg(154)}║║║{fg(155)}║╣ {fg(156)}╠╩╗{fg(196)}║ ║{fg(197)}║  {fg(198)}╠═╣\n{fg(154)}╝╚╝{fg(155)}╚═╝{fg(156)}╚═╝{fg(196)}╚═╝{fg(197)}╩═╝{fg(198)}╩ ╩{attr(0)}''')
+     print(f"""{fg(40)}        ╔═╗{fg(41)}═╗ ╦{fg(42)}╔═╗{fg(43)}┌┬┐{fg(44)}┌─┐{fg(45)}┌─┐{fg(80)}┬  \n{fg(40)}        ╚═╗{fg(41)}╔╩╦╝{fg(42)}╠═╝{fg(43)} │ {fg(44)}│ │{fg(45)}│ │{fg(80)}│  \n{fg(40)}        ╚═╝{fg(41)}╩ ╚═{fg(42)}╩ {fg(7)}o{fg(43)} ┴ {fg(44)}└─┘{fg(45)}└─┘{fg(80)}┴─┘{attr(0)}""")
     elif mode == 'main_banner':
-     print(f'''                 {fg(154)}╔╗╔{fg(155)}╔═╗{fg(156)}╔╗ {fg(196)}╦{fg(197)} ╦╦{fg(198)}  ╔═╗\n                 {fg(154)}║║║{fg(155)}║╣ {fg(156)}╠╩╗{fg(196)}║ ║{fg(197)}║  {fg(198)}╠═╣\n                 {fg(154)}╝╚╝{fg(155)}╚═╝{fg(156)}╚═╝{fg(196)}╚═╝{fg(197)}╩═╝{fg(198)}╩ ╩\n     {fg(154)}N U B U L A C 2 {fg(1)}- - - {fg(3)}- - - {fg(196)}N U B U L A C 2\n{fg(196)}  ┗━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━┛\n{fg(196)}     ┏┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻┓\n{fg(154)}          W E L C O M E {fg(155)}T O {fg(156)}N E B U L A C 2    \n{fg(154)}         MOD {fg(155)}OF {fg(156)}SOCKETXPLODE {fg(157)}@_@ - 2023//19//4\n{fg(196)}     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n{fg(196)}          ┏ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ┓\n{fg(196)}          ┃ {fg(154)}TYPE {fg(155)}[{fg(156)}help{fg(155)}] {fg(154)}For Show command {fg(196)} ┃\n{fg(196)}          ┗ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ┛{attr(0)}''')
+     print(f"""{fg(40)}        ╔═╗{fg(41)}═╗ ╦{fg(42)}╔═╗{fg(43)}┌┬┐{fg(44)}┌─┐{fg(45)}┌─┐{fg(80)}┬  \n{fg(40)}        ╚═╗{fg(41)}╔╩╦╝{fg(42)}╠═╝{fg(43)} │ {fg(44)}│ │{fg(45)}│ │{fg(80)}│  \n{fg(40)}        ╚═╝{fg(41)}╩ ╚═{fg(42)}╩ {fg(7)}o{fg(43)} ┴ {fg(44)}└─┘{fg(45)}└─┘{fg(80)}┴─┘\n{fg(41)}╔══════{fg(43)}═════════════{fg(45)}═══════════════{fg(75)}═════╗╗\n{fg(41)}║    {fg(40)}  WELCOME{fg(41)} GUY {fg(42)}TO {fg(43)}PANEL {fg(44)}SXPTOOL{fg(75)}     ║║\n{fg(41)}╚═╦════{fg(43)}═════════════{fg(45)}═══════════════{fg(75)}═════╩╬╗\n{fg(41)}  ╚══╦═{fg(43)}═════════════{fg(45)}═══════════════{fg(75)}══════╩╩══╗╗\n{fg(41)}     ║   {fg(40)}Type {fg(41)}<{fg(42)}help{fg(41)}> {fg(43)}for show {fg(44)}some command  {fg(75)} ║║\n{fg(41)}  ╔══╩═{fg(43)}═════════════{fg(45)}═══════════════{fg(75)}═╦╦═══════╝╝\n{fg(41)}╔═╩════{fg(43)}═════════════{fg(45)}═══════════════{fg(75)}═╩╩══╗╗\n{fg(41)}║ {fg(214)}━ {fg(184)}━ {fg(40)}https://{fg(41)}discord.gg{fg(42)}/RVe3WjjyYw {fg(184)}━{fg(214)} ━{fg(75)} ║║\n{fg(41)}╚══════{fg(43)}═════════════{fg(45)}═══════════════{fg(75)}═════╝╝\n{fg(196)}Copyright © {fg(166)}2023 Hex1629. {fg(136)}GUI Rights Reserved. {attr(0)}\n""")
     elif mode == 'methods' or mode == 'method':
-       print(f'''{fg(202)}[ methods ] {fg(231)}- {fg(172)}[ METHODS ] {fg(231)}- {fg(173)}[ methods ] {fg(231)}- {fg(174)}[ METHODS ]\n\n{fg(203)}            HTTP {fg(214)}- {fg(160)}RPS {fg(161)}IN {fg(162)}RANGE {fg(163)}( 0-3M )\n{fg(204)}   HTTPS_TLS.MIX {fg(215)}- {fg(160)}RPS {fg(161)}IN {fg(162)}RANGE {fg(163)}( 0-6K )\n{fg(205)}  HTTPS_RECREATE {fg(216)}- {fg(160)}RPS {fg(161)}IN {fg(162)}RANGE {fg(163)}( 0-NULL )\n{fg(206)}HTTPS_TLS.CIPHER {fg(217)}- {fg(160)}RPS {fg(161)}IN {fg(162)}RANGE {fg(163)}( 0-NULL )\n{fg(207)}       HTTPS_ALL {fg(218)}- {fg(160)}RPS {fg(161)}IN {fg(162)}RANGE {fg(163)}( 0-NULL )\n\n{fg(213)}[ METHODS ] {fg(231)}- {fg(212)}[ methods ] {fg(231)}- {fg(211)}[ METHODS ] {fg(231)}- {fg(210)}[ methods ]{attr(0)}''')
+       print(f'''    {fg(40)}        ╔═╗{fg(41)}═╗ ╦{fg(42)}╔═╗{fg(43)}┌┬┐{fg(44)}┌─┐{fg(45)}┌─┐{fg(80)}┬\n    {fg(40)}        ╚═╗{fg(41)}╔╩╦╝{fg(42)}╠═╝{fg(43)} │ {fg(44)}│ │{fg(45)}│ │{fg(80)}│\n    {fg(40)}        ╚═╝{fg(41)}╩ ╚═{fg(42)}╩ {fg(7)}o{fg(43)} ┴ {fg(44)}└─┘{fg(45)}└─┘{fg(80)}┴─┘\n{fg(4)}          ╔════════════╦═{fg(33)}╗╗ ╔═╗\n{fg(4)}          ╠═══════════{fg(33)}═╩═╣║ ╚═╝\n{fg(4)}     ╔════╣{fg(40)}     HTTP    {fg(33)} ║║\n{fg(4)}     ╠════╣ {fg(41)}XXXXXXXXXXXX{fg(33)} ║╠══════════{fg(45)}══════╦═╗╗\n{fg(4)}     ║    ╚═══════════╦╦═{fg(33)}╝╬══════════════{fg(45)}══╩═╣║\n{fg(4)}     ╚════╦════════{fg(33)}═══╩╩╦═╣╗  {fg(42)}   REG-1m{fg(45)}      ║║\n{fg(4)}          ╠══════════{fg(33)}═══╩═╣║  {fg(43)}REG-NETDATA   {fg(45)} ║║\n{fg(4)}    ╔══╗  ║ {fg(44)}HTTPS_TLS.MIX {fg(33)}║║═══════{fg(45)}══════════╝╝\n{fg(4)}    ╚══╝  ║ {fg(45)}HTPSRE        {fg(33)}║║  ╔══╗\n{fg(4)}    ╚══╝  ║ {fg(46)}HTPC          {fg(33)}║║  ╚══╝\n{fg(4)}    ╚══╝  ║ {fg(47)}HTTPS_ALL     {fg(33)}║║   \n{fg(4)}          ╚═════════{fg(33)}══════╝╝{attr(0)}''')
     elif mode == 'help':
-      print(f'''          {fg(154)}╔╗╔{fg(196)}╔═╗{fg(155)}╔╗ {fg(197)}╦ ╦{fg(156)}╦  {fg(198)}╔═╗\n          {fg(154)}║║║{fg(196)}║╣ {fg(155)}╠╩╗{fg(197)}║ ║{fg(156)}║  {fg(198)}╠═╣\n          {fg(154)}╝╚╝{fg(196)}╚═╝{fg(155)}╚═╝{fg(197)}╚═╝{fg(156)}╩═╝{fg(198)}╩ ╩\n{fg(155)}  HELP.MENU              {fg(196)}HELP.MENU\n{fg(34)}╔══════════════════════════════════╗\n{fg(35)}╚══╦════════════════════════════╦══╝\n{fg(36)}   ║ {fg(231)}EXIT EXEC    XXXXX XXXXXXX {fg(36)}║\n{fg(37)}   ║ {fg(231)}MENU METHODS XXXXX XXXXXXX {fg(37)}║\n{fg(38)}   ║ {fg(231)}CLS  PING    XXXXX XXXXXXX {fg(38)}║\n{fg(39)}╔══╩════════════════════════════╩══╗\n{fg(45)}╚══════════════════════════════════╝{attr(0)}''')
+      print(f"""{fg(202)}╔═══{fg(208)}══════{fg(209)}══════════════{fg(210)}════════════╦═══{fg(211)}╗╗\n{fg(202)}║   {fg(112)}MENU {fg(113)}- {fg(114)}LIST {fg(115)}OF {fg(116)}COMMAND {fg(117)}- {fg(87)}MENU  {fg(210)} ║ {fg(1)}X{fg(211)} ║║\n{fg(202)}╠══{fg(208)}═════{fg(209)}══════════════════════{fg(210)}══════╩═══{fg(211)}╣║\n{fg(202)}║ {fg(1)}━ {fg(9)}REQUIRES PARAMETER   {fg(3)}- {fg(11)}NOT REQUIRES{fg(211)} ║║\n{fg(202)}╠════════{fg(208)}═══════════{fg(209)}════════{fg(210)}════════════{fg(211)}╣║\n{fg(202)}║    {fg(112)}HELP {fg(3)}- {fg(117)}For show some command.   {fg(211)}   ║║\n{fg(202)}║    {fg(113)}MENU {fg(3)}- {fg(116)}Return to main panel.    {fg(211)}   ║║\n{fg(202)}║    {fg(114)}PING {fg(3)}- {fg(115)}For check target.       {fg(211)}    ║║\n{fg(202)}║ {fg(115)}METHODS {fg(1)}- {fg(114)}Show methods.            {fg(211)}   ║║\n{fg(202)}║ {fg(116)}   STOP {fg(1)}- {fg(113)}For stop attack            {fg(211)} ║║\n{fg(202)}║ {fg(117)}   EXEC {fg(1)}- {fg(112)}For execute command.       {fg(211)} ║║\n{fg(202)}║     {fg(118)}CLS {fg(3)}- {fg(111)}Clear console.            {fg(211)}  ║║\n{fg(202)}║    {fg(119)}EXIT {fg(1)}- {fg(110)}For exit this panel. {fg(211)}       ║║\n{fg(202)}╚════{fg(208)}════════{fg(209)}═════════════{fg(210)}══════════{fg(211)}════╝╝{attr(0)}\n""")
     elif mode == 'atk':
-      print(f'''{fg(154)}SENDING {fg(155)}PACKET {fg(156)}---> {fg(157)}({fg(196)}{target_load}{fg(231)}:{fg(197)}{port_load}{fg(157)}){attr(0)}''')
+      print(f"""{fg(41)}SEND {fg(42)}DOS {fg(43)}TO {fg(44)}TARGET {fg(45)}[{fg(196)}METHODS {fg(45)}- {fg(136)}{methods_load}{fg(45)}] {fg(80)}----> {fg(45)}({fg(214)}{target_load}{fg(80)}:{fg(184)}{port_load}{fg(45)}){attr(0)}""")
 
 num_panel = False
 def PANEL_USE():
@@ -429,6 +441,15 @@ def PANEL_USE():
            print(F"[ERROR] {e}")
           except BaseException as e:
            print(F"[BASE - ERROR] {e}")
+    elif arg_load[0] == 'STOP':
+       if len(attack_ist_id) == 0:
+          for data_id in attack_ist_id:
+             print(data_id)
+          print("TYPE YOU ID NEED KILL")
+          id_killer = input("ID $")
+          stop_command = id_killer
+          for _ in attack_ist_id:
+             attack_ist_id.remove(id_killer)
     elif arg_load[0] == 'PING':
        methods_type = input(f"{Fore.GREEN}MODE_PING {Fore.WHITE}({Fore.YELLOW}l4{Fore.WHITE},{Fore.LIGHTYELLOW_EX}l7{Fore.WHITE}) ${Fore.RESET}")
        if methods_type.upper() == 'L7' or methods_type.upper() == 'LAYER7' or methods_type.upper() == '7':
@@ -460,8 +481,7 @@ def PANEL_USE():
     PANEL_USE()
 def checker_login():
     global username,password
-    clear_text()
-    print(f"{Fore.LIGHTYELLOW_EX}         __..---..__\n{Fore.YELLOW}     ,-='  {Fore.RED}/  |  \{Fore.YELLOW}  `=-.\n{Fore.LIGHTWHITE_EX}    :--..___________..--;\n{Fore.WHITE}     \.,_____________,./ \n{Fore.RED}   ╔═╗╔═╗╔═╗╦╔═╔═╗╔╦╗┌─┐┬┌─┐\n{Fore.LIGHTRED_EX}   ╚═╗║ ║║  ╠╩╗║╣  ║ ├─┘│├┤ \n{Fore.WHITE}   ╚═╝╚═╝╚═╝╩ ╩╚═╝ ╩o┴  ┴└─┘{Fore.RESET}")
+    clear_console()
     print(f"{Fore.YELLOW}USER - ROOT {Fore.LIGHTYELLOW_EX}PASSWORD - ROOT{Fore.RESET}")
     time.sleep(0.5)
     username = input(f"{Fore.CYAN}USERNAME {Fore.WHITE}${Fore.RESET}")
@@ -473,13 +493,15 @@ def checker_login():
     if login_checker(username,password) == True:
      print(f"{Fore.CYAN}PANEL LOADING . . .{Fore.RESET}")
      time.sleep(1)
-     clear_text()
-     command()
+     clear_console()
+     PANEL_USE()
     elif login_checker(username,password) == 'UNKNOWN ERROR ARE RETURNING BY FILESNOTFOUND':
         print(f"{Fore.RED}UNKNOWN ERROR OF FILES 'login.txt'{Fore.RESET}")
+        FILES_MAKER(os.path.join(os.path.dirname(__file__),'logs.txt'),'A',f'[failed] {GET_TIME()} - NOT FOUND login.txt/logins.txt\n')
         time.sleep(1)
         checker_login()
     else:
+     FILES_MAKER(os.path.join(os.path.dirname(__file__),'logs.txt'),'A',f"[failed] {GET_TIME()} - CAN'T LOGIN \n")
      print(f"{Fore.RED}FAILED {Fore.YELLOW}LOGIN . . .{Fore.RESET}")
      time.sleep(1)
      checker_login()

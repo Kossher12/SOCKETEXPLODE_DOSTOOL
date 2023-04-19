@@ -441,12 +441,13 @@ def PANEL_USE():
            print(F"[ERROR] {e}")
           except BaseException as e:
            print(F"[BASE - ERROR] {e}")
-    elif arg_load[0] == 'STOP':
-       if len(attack_ist_id) == 0:
+    if len(attack_ist_id) == 0:
+          print(f"{fg(196)}NOT FOUND ID{attr(0)}")
+       else:
           for data_id in attack_ist_id:
-             print(data_id)
-          print("TYPE YOU ID NEED KILL")
-          id_killer = input("ID $")
+             print(f'{fg(196)}ID{fg(231)}={fg(197)}{data_id}{attr(0)}')
+          print(f"{fg(76)}TYPE {fg(77)}YOU {fg(78)}ID {fg(79)}NEED {fg(80)}KILL{attr(0)}")
+          id_killer = input(f"{fg(196)}I{fg(197)}D {fg(231)}${attr(0)}")
           stop_command = id_killer
           for _ in attack_ist_id:
              attack_ist_id.remove(id_killer)

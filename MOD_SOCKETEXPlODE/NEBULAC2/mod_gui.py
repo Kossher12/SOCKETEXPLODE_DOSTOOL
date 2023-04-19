@@ -260,7 +260,7 @@ def CLI_COLOR(mode):
     elif mode == 'methods' or mode == 'method':
        print(f'''{fg(202)}[ methods ] {fg(231)}- {fg(172)}[ METHODS ] {fg(231)}- {fg(173)}[ methods ] {fg(231)}- {fg(174)}[ METHODS ]\n\n{fg(203)}            HTTP {fg(214)}- {fg(160)}RPS {fg(161)}IN {fg(162)}RANGE {fg(163)}( 0-3M )\n{fg(204)}   HTTPS_TLS.MIX {fg(215)}- {fg(160)}RPS {fg(161)}IN {fg(162)}RANGE {fg(163)}( 0-6K )\n{fg(205)}  HTTPS_RECREATE {fg(216)}- {fg(160)}RPS {fg(161)}IN {fg(162)}RANGE {fg(163)}( 0-NULL )\n{fg(206)}HTTPS_TLS.CIPHER {fg(217)}- {fg(160)}RPS {fg(161)}IN {fg(162)}RANGE {fg(163)}( 0-NULL )\n{fg(207)}       HTTPS_ALL {fg(218)}- {fg(160)}RPS {fg(161)}IN {fg(162)}RANGE {fg(163)}( 0-NULL )\n\n{fg(213)}[ METHODS ] {fg(231)}- {fg(212)}[ methods ] {fg(231)}- {fg(211)}[ METHODS ] {fg(231)}- {fg(210)}[ methods ]{attr(0)}''')
     elif mode == 'help':
-      print(f'''          {fg(154)}╔╗╔{fg(196)}╔═╗{fg(155)}╔╗ {fg(197)}╦ ╦{fg(156)}╦  {fg(198)}╔═╗\n          {fg(154)}║║║{fg(196)}║╣ {fg(155)}╠╩╗{fg(197)}║ ║{fg(156)}║  {fg(198)}╠═╣\n          {fg(154)}╝╚╝{fg(196)}╚═╝{fg(155)}╚═╝{fg(197)}╚═╝{fg(156)}╩═╝{fg(198)}╩ ╩\n{fg(155)}  HELP.MENU              {fg(196)}HELP.MENU\n{fg(34)}╔══════════════════════════════════╗\n{fg(35)}╚══╦════════════════════════════╦══╝\n{fg(36)}   ║ {fg(231)}EXIT EXEC    XXXXX XXXXXXX {fg(36)}║\n{fg(37)}   ║ {fg(231)}MENU METHODS XXXXX XXXXXXX {fg(37)}║\n{fg(38)}   ║ {fg(231)}CLS  PING    XXXXX XXXXXXX {fg(38)}║\n{fg(39)}╔══╩════════════════════════════╩══╗\n{fg(45)}╚══════════════════════════════════╝{attr(0)}''')
+      print(f'''          {fg(154)}╔╗╔{fg(196)}╔═╗{fg(155)}╔╗ {fg(197)}╦ ╦{fg(156)}╦  {fg(198)}╔═╗\n          {fg(154)}║║║{fg(196)}║╣ {fg(155)}╠╩╗{fg(197)}║ ║{fg(156)}║  {fg(198)}╠═╣\n          {fg(154)}╝╚╝{fg(196)}╚═╝{fg(155)}╚═╝{fg(197)}╚═╝{fg(156)}╩═╝{fg(198)}╩ ╩\n{fg(155)}  HELP.MENU              {fg(196)}HELP.MENU\n{fg(34)}╔══════════════════════════════════╗\n{fg(35)}╚══╦════════════════════════════╦══╝\n{fg(36)}   ║ {fg(231)}EXIT EXEC    STOP  XXXXXXX {fg(36)}║\n{fg(37)}   ║ {fg(231)}MENU METHODS XXXXX XXXXXXX {fg(37)}║\n{fg(38)}   ║ {fg(231)}CLS  PING    XXXXX XXXXXXX {fg(38)}║\n{fg(39)}╔══╩════════════════════════════╩══╗\n{fg(45)}╚══════════════════════════════════╝{attr(0)}''')
     elif mode == 'atk':
       print(f'''{fg(154)}SENDING {fg(155)}PACKET {fg(156)}---> {fg(157)}({fg(196)}{target_load}{fg(231)}:{fg(197)}{port_load}{fg(157)}){attr(0)}''')
 
@@ -283,6 +283,17 @@ def PANEL_USE():
        CLI_COLOR('main_banner')
     elif arg_load[0] == 'METHODS':
        CLI_COLOR('methods')
+    elif arg_load[0] == 'STOP':
+       if len(attack_ist_id) == 0:
+          print(f"{fg(196)}NOT {fg(197)}FOUND {fg(198)}ID{attr(0)}")
+       else:
+          for data_id in attack_ist_id:
+             print(f'{fg(196)}ID{fg(231)}={fg(197)}{data_id}{attr(0)}')
+          print(f"{fg(196)}TYPE {fg(197)}YOU {fg(198)}ID {fg(199)}NEED {fg(200)}KILL{attr(0)}")
+          id_killer = input(f"{fg(196)}I{fg(197)}D {fg(231)}${attr(0)}")
+          stop_command = id_killer
+          for _ in attack_ist_id:
+             attack_ist_id.remove(id_killer)
     elif arg_load[0] == 'EXIT':
        print(f"{fg(41)}EXITING {fg(42)}. . . .{attr(0)}")
        try:

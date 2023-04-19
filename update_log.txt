@@ -1,2 +1,1 @@
-UPDATE#leak_gui.py#https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODE_DOSTOOL/main/leak_gui.py
-UPDATE#main.py#https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODE_DOSTOOL/main/main.py
+SHUTDOWN#0.4#ERROR IS RETRUN BACK AGAIN#BRUHHH I GOT BUG AGAIN#DUDE OK I FOUND BUG LINE BUT I THINK IT NORMAL ;-;
